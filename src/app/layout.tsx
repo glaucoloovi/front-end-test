@@ -18,8 +18,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="pt-BR" className={montserrat.className}>
       <body>
         <StyledComponentsRegistry>
-          <GlobalStyle />
           <ThemeProvider>
+            <GlobalStyle />
             <Header />
             {children}
           </ThemeProvider>

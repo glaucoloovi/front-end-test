@@ -7,6 +7,7 @@ export const theme = {
     'gray-2': '#707B81',
     'gray-3': '#CCCFD1',
     'gray-4': '#F8FAFB',
+    'gray-5': '#EEF2F4',
     'purple-1': '#5D41AC',
     'purple-2': '#4C309B',
   },
@@ -23,6 +24,10 @@ export const theme = {
     sm: {
       size: '0.875rem',
       lineHeight: '1rem',
+    },
+    xl: {
+      size: '1.25rem',
+      lineHeight: '1.125rem',
     },
   },
   spacing: {

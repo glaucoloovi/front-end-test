@@ -14,4 +14,8 @@ export const GlobalStyle = createGlobalStyle`
     all: unset;
     cursor: pointer;
   }
+
+  body {
+    background-color: ${({ theme }) => theme.colors['gray-5']};
+  }
 `
