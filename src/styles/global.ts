@@ -15,6 +15,10 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  li {
+    list-style: none;
+  }
+
   body {
     background-color: ${({ theme }) => theme.colors['gray-5']};
   }

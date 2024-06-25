@@ -1,5 +1,13 @@
 import { Aside } from '@/components/Aside/intex'
 import { Input } from '@/components/Input'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/Pagination'
 import { ProfitabilityChart } from '@/components/ProfitabilityChart'
 import { ResumeCard } from '@/components/ResumeCard'
 import {
@@ -37,6 +45,26 @@ export default function Page() {
           </SelectContent>
         </Select>
         <Input />
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" scroll={false} />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="/?page=1" scroll={false}>
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="/?page=2" scroll={false} isActive>
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" scroll={false} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </StyledMain>
     </Wrapper>
   )
