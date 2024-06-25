@@ -10,6 +10,9 @@ export const StyledMain = styled.main`
   width: 100%;
   padding: ${({ theme }) =>
     `${theme.spacing['spacing-32']} ${theme.spacing['spacing-20']}`};
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing['spacing-24']};
 
   & .title {
     font-size: ${({ theme }) => theme.typography.xl.size};
@@ -18,7 +21,6 @@ export const StyledMain = styled.main`
   }
 
   & .resume-card-group {
-    margin-top: ${({ theme }) => theme.spacing['spacing-24']};
     display: grid;
     gap: ${({ theme }) => theme.spacing['spacing-10']};
     grid-template-columns: repeat(6, 1fr);

@@ -1,4 +1,5 @@
 import { Aside } from '@/components/Aside/intex'
+import { ProfitabilityChart } from '@/components/ProfitabilityChart'
 import { ResumeCard } from '@/components/ResumeCard'
 import { StyledMain, Wrapper } from './styles'
 
@@ -16,6 +17,7 @@ export default function Page() {
           <ResumeCard label="CDI" value="23,68%" />
           <ResumeCard label="% SOBRE CDI" value="320%" />
         </div>
+        <ProfitabilityChart />
       </StyledMain>
     </Wrapper>
   )

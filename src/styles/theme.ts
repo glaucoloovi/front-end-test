@@ -25,6 +25,10 @@ export const theme = {
       size: '0.875rem',
       lineHeight: '1rem',
     },
+    lg: {
+      size: '1.125rem',
+      lineHeight: '1.125rem',
+    },
     xl: {
       size: '1.25rem',
       lineHeight: '1.125rem',
