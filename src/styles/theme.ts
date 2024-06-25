@@ -27,6 +27,7 @@ export const theme = {
   },
   spacing: {
     'spacing-10': '0.625rem',
+    'spacing-14': '0.875rem',
     'spacing-16': '1rem',
     'spacing-20': '1.25rem',
     'spacing-30': '1.875rem',
