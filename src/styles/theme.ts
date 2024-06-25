@@ -31,6 +31,7 @@ export const theme = {
     'spacing-16': '1rem',
     'spacing-20': '1.25rem',
     'spacing-30': '1.875rem',
+    'spacing-32': '2rem',
   },
   radius: {
     circle: '50%',

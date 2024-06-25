@@ -24,7 +24,7 @@ export function AsideMenuItem({
     <div>
       <StyledAsideMenuItem href={href} $isActive={isActive}>
         <div className="badge-icon">{icon}</div>
-        {label}
+        <span className="label">{label}</span>
         <ChevronRightIcon className="icon" />
       </StyledAsideMenuItem>
       {isActive && children}

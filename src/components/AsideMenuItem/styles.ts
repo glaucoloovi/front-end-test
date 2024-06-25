@@ -4,7 +4,8 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export const StyledAsideMenuItem = styled(Link)<{ $isActive: boolean }>`
-  padding: ${({ theme }) => theme.spacing['spacing-16']};
+  padding: ${({ theme }) =>
+    `${theme.spacing['spacing-16']} ${theme.spacing['spacing-32']} ${theme.spacing['spacing-16']} ${theme.spacing['spacing-16']}`};
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing['spacing-14']};
@@ -25,7 +26,12 @@ export const StyledAsideMenuItem = styled(Link)<{ $isActive: boolean }>`
     align-items: center;
     justify-content: center;
     border-radius: ${({ theme }) => theme.radius.circle};
-    background-color: ${({ theme }) => theme.colors['purple-2']};
+    background-color: ${({ $isActive, theme }) =>
+      $isActive ? theme.colors['purple-2'] : theme.colors['gray-1']};
+  }
+
+  & .label {
+    flex: 1;
   }
 
   & .icon {
