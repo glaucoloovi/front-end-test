@@ -1,4 +1,5 @@
 import { Aside } from '@/components/Aside/intex'
+import { Input } from '@/components/Input'
 import { ProfitabilityChart } from '@/components/ProfitabilityChart'
 import { ResumeCard } from '@/components/ResumeCard'
 import {
@@ -35,6 +36,7 @@ export default function Page() {
             <SelectItem value="3">Option 3</SelectItem>
           </SelectContent>
         </Select>
+        <Input />
       </StyledMain>
     </Wrapper>
   )
