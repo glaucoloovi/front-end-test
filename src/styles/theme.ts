@@ -31,17 +31,22 @@ export const theme = {
     },
   },
   spacing: {
+    'spacing-4': '0.25rem',
+    'spacing-8': '0.5rem',
     'spacing-10': '0.625rem',
     'spacing-14': '0.875rem',
     'spacing-16': '1rem',
     'spacing-20': '1.25rem',
+    'spacing-24': '1.5rem',
     'spacing-30': '1.875rem',
     'spacing-32': '2rem',
   },
   radius: {
+    lg: '0.625rem',
     circle: '50%',
   },
   shadow: {
-    'shadow-1': '0px 3px 20px rgba(112, 123, 129, 0.1)',
+    'shadow-1': '0 3px 20px rgba(112, 123, 129, 0.1)',
+    'shadow-2': '0 2px 20px rgba(0, 0, 0, 0.05)',
   },
 }

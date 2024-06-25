@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 `
 
 export const StyledMain = styled.main`
+  width: 100%;
   padding: ${({ theme }) =>
     `${theme.spacing['spacing-32']} ${theme.spacing['spacing-20']}`};
 
@@ -14,5 +15,12 @@ export const StyledMain = styled.main`
     font-size: ${({ theme }) => theme.typography.xl.size};
     line-height: ${({ theme }) => theme.typography.xl.lineHeight};
     color: ${({ theme }) => theme.colors['purple-2']};
+  }
+
+  & .resume-card-group {
+    margin-top: ${({ theme }) => theme.spacing['spacing-24']};
+    display: grid;
+    gap: ${({ theme }) => theme.spacing['spacing-10']};
+    grid-template-columns: repeat(6, 1fr);
   }
 `
