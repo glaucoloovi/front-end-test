@@ -11,15 +11,15 @@ type HeaderCardProps = {
 export function HeaderCard({ type, value }: HeaderCardProps) {
   const typeMap = {
     equity: {
-      label: 'Saldo bruto',
+      label: 'SALDO BRUTO',
       icon: <EquityIcon />,
     },
     percentageProfit: {
-      label: 'Rentabilidade',
+      label: 'RENTABILIDADE',
       icon: <TrendingUpIcon />,
     },
     valueApplied: {
-      label: 'Valor aplicado',
+      label: 'VALOR APLICADO',
       icon: <ArrowUpIcon />,
     },
   }

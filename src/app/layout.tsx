@@ -1,3 +1,4 @@
+import { Header } from '@/components/Header'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import StyledComponentsRegistry from '@/lib/registry'
 import { GlobalStyle } from '@/styles/global'
@@ -18,7 +19,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <StyledComponentsRegistry>
           <GlobalStyle />
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <Header />
+            {children}
+          </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

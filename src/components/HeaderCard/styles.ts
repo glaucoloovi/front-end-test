@@ -23,7 +23,6 @@ export const StyledHeaderCard = styled.div`
     & .label {
       font-size: ${({ theme }) => theme.typography.xxs.size};
       line-height: ${({ theme }) => theme.typography.xxs.lineHeight};
-      text-transform: uppercase;
     }
   }
 `
