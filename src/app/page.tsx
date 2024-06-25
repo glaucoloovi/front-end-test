@@ -1,3 +1,9 @@
+import { Wrapper } from './styles'
+
 export default function Page() {
-  return <h1>Hello, Next.js!</h1>
+  return (
+    <Wrapper>
+      <h1>Hello, Next.js!</h1>
+    </Wrapper>
+  )
 }

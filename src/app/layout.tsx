@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@/contexts/ThemeContext'
 import StyledComponentsRegistry from '@/lib/registry'
 import { GlobalStyle } from '@/styles/global'
 import { Montserrat } from 'next/font/google'
@@ -17,7 +18,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <StyledComponentsRegistry>
           <GlobalStyle />
-          {children}
+          <ThemeProvider>{children}</ThemeProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
