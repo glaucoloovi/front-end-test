@@ -1,6 +1,13 @@
 import { Aside } from '@/components/Aside/intex'
 import { ProfitabilityChart } from '@/components/ProfitabilityChart'
 import { ResumeCard } from '@/components/ResumeCard'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/Select'
 import { StyledMain, Wrapper } from './styles'
 
 export default function Page() {
@@ -18,6 +25,16 @@ export default function Page() {
           <ResumeCard label="% SOBRE CDI" value="320%" />
         </div>
         <ProfitabilityChart />
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Ordenar por" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1">Option 1</SelectItem>
+            <SelectItem value="2">Option 2</SelectItem>
+            <SelectItem value="3">Option 3</SelectItem>
+          </SelectContent>
+        </Select>
       </StyledMain>
     </Wrapper>
   )

@@ -21,6 +21,10 @@ export const theme = {
       size: '0.5rem',
       lineHeight: '0.625rem',
     },
+    xs: {
+      size: '0.75rem',
+      lineHeight: '1.25rem',
+    },
     sm: {
       size: '0.875rem',
       lineHeight: '1rem',
