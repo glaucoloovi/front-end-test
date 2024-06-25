@@ -5,7 +5,10 @@ export const theme = {
     white: '#FFFFFF',
     'gray-1': '#DAE0E3',
     'gray-2': '#707B81',
+    'gray-3': '#CCCFD1',
+    'gray-4': '#F8FAFB',
     'purple-1': '#5D41AC',
+    'purple-2': '#4C309B',
   },
   typography: {
     weight: {
@@ -17,9 +20,15 @@ export const theme = {
       size: '0.5rem',
       lineHeight: '0.625rem',
     },
+    sm: {
+      size: '0.875rem',
+      lineHeight: '1rem',
+    },
   },
   spacing: {
     'spacing-10': '0.625rem',
+    'spacing-16': '1rem',
+    'spacing-20': '1.25rem',
     'spacing-30': '1.875rem',
   },
   radius: {

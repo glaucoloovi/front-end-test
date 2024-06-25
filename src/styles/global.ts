@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  button {
+  button, a {
     appearance: none;
     all: unset;
     cursor: pointer;
