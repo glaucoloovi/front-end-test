@@ -1,4 +1,5 @@
 import { Aside } from '@/components/Aside/intex'
+import { IncomeCard } from '@/components/IncomeCard'
 import { Input } from '@/components/Input'
 import {
   Pagination,
@@ -65,6 +66,9 @@ export default function Page() {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
+        <IncomeCard label="TÍTULO">
+          <p>Nome do título</p>
+        </IncomeCard>
       </StyledMain>
     </Wrapper>
   )
