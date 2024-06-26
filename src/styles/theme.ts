@@ -10,6 +10,8 @@ export const theme = {
     'gray-5': '#EEF2F4',
     'purple-1': '#5D41AC',
     'purple-2': '#4C309B',
+    'green-1': '#38BFA0',
+    'blue-1': '#008DCB',
   },
   typography: {
     weight: {

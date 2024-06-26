@@ -33,6 +33,7 @@ export const StyledMain = styled.main`
     gap: ${({ theme }) => theme.spacing['spacing-16']};
     border-radius: ${({ theme }) => theme.radius.lg};
     box-shadow: ${({ theme }) => theme.shadow['shadow-2']};
+    padding-bottom: ${({ theme }) => theme.spacing['spacing-16']};
 
     & .header {
       padding: ${({ theme }) => theme.spacing['spacing-16']};
@@ -66,11 +67,70 @@ export const StyledMain = styled.main`
         gap: ${({ theme }) => theme.spacing['spacing-10']};
         grid-template-columns: repeat(2, 2fr) 1fr;
         border-bottom: 1px solid ${({ theme }) => theme.colors['gray-5']};
+        position: relative;
 
         &:nth-child(even) {
           background-color: ${({ theme }) => theme.colors['gray-4']};
         }
+
+        & .rescued-product {
+          position: absolute;
+          top: ${({ theme }) => theme.spacing['spacing-4']};
+          left: ${({ theme }) => theme.spacing['spacing-20']};
+          font-size: ${({ theme }) => theme.typography.xxs.size};
+          line-height: ${({ theme }) => theme.typography.xxs.lineHeight};
+          color: ${({ theme }) => theme.colors['gray-2']};
+        }
       }
+    }
+  }
+`
+
+export const StyledIncomeCardContent = styled.div<{
+  $variant: 'default' | 'primary' | 'secondary'
+}>`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: ${({ theme }) => theme.spacing['spacing-16']};
+
+  & .description {
+    font-size: ${({ theme }) => theme.typography.xs.size};
+    line-height: ${({ theme }) => theme.typography.sm.lineHeight};
+    font-weight: ${({ theme }) => theme.typography.weight.medium};
+    color: ${({ theme }) => theme.colors['gray-2']};
+    width: 50%;
+  }
+
+  & .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.spacing['spacing-4']};
+
+    & .content-wrapper-label {
+      font-size: ${({ theme }) => theme.typography.xxs.size};
+      line-height: ${({ theme }) => theme.typography.xxs.lineHeight};
+      font-weight: ${({ theme }) => theme.typography.weight.medium};
+      color: ${({ theme }) => theme.colors['gray-2']};
+    }
+
+    & .content-wrapper-value {
+      font-size: ${({ theme }) => theme.typography.sm.size};
+      line-height: ${({ theme }) => theme.typography.sm.lineHeight};
+      font-weight: ${({ theme }) => theme.typography.weight.medium};
+      color: ${({ theme }) => theme.colors['purple-2']};
+
+      ${({ $variant, theme }) =>
+        $variant === 'primary' &&
+        `
+        color: ${theme.colors['green-1']};
+      `}
+
+      ${({ $variant, theme }) =>
+        $variant === 'secondary' &&
+        `
+        color: ${theme.colors['blue-1']};
+      `}
     }
   }
 `
