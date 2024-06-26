@@ -35,40 +35,101 @@ export default function Page() {
           <ResumeCard label="% SOBRE CDI" value="320%" />
         </div>
         <ProfitabilityChart />
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Ordenar por" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1">Option 1</SelectItem>
-            <SelectItem value="2">Option 2</SelectItem>
-            <SelectItem value="3">Option 3</SelectItem>
-          </SelectContent>
-        </Select>
-        <Input />
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" scroll={false} />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="/?page=1" scroll={false}>
-                1
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="/?page=2" scroll={false} isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" scroll={false} />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-        <IncomeCard label="TÍTULO">
-          <p>Nome do título</p>
-        </IncomeCard>
+        <div className="my-incomes-group">
+          <div className="header">
+            <h3 className="label">Minhas Rendas Fixas</h3>
+            <div className="filters">
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Ordenar por" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">Option 1</SelectItem>
+                  <SelectItem value="2">Option 2</SelectItem>
+                  <SelectItem value="3">Option 3</SelectItem>
+                </SelectContent>
+              </Select>
+              <Input />
+            </div>
+          </div>
+          <section className="incomes">
+            <div className="incomes-group">
+              <IncomeCard label="TÍTULO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="MINHA POSIÇÃO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="VENCIMENTO">
+                <p>Nome do título</p>
+              </IncomeCard>
+            </div>
+            <div className="incomes-group">
+              <IncomeCard label="TÍTULO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="MINHA POSIÇÃO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="VENCIMENTO">
+                <p>Nome do título</p>
+              </IncomeCard>
+            </div>
+            <div className="incomes-group">
+              <IncomeCard label="TÍTULO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="MINHA POSIÇÃO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="VENCIMENTO">
+                <p>Nome do título</p>
+              </IncomeCard>
+            </div>
+            <div className="incomes-group">
+              <IncomeCard label="TÍTULO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="MINHA POSIÇÃO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="VENCIMENTO">
+                <p>Nome do título</p>
+              </IncomeCard>
+            </div>
+            <div className="incomes-group">
+              <IncomeCard label="TÍTULO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="MINHA POSIÇÃO">
+                <p>Nome do título</p>
+              </IncomeCard>
+              <IncomeCard label="VENCIMENTO">
+                <p>Nome do título</p>
+              </IncomeCard>
+            </div>
+          </section>
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" scroll={false} />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="/?page=1" scroll={false}>
+                  1
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="/?page=2" scroll={false} isActive>
+                  2
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" scroll={false} />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       </StyledMain>
     </Wrapper>
   )
