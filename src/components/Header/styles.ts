@@ -16,6 +16,11 @@ export const StyledHeader = styled.header`
     &:last-child {
       margin-left: ${({ theme }) => theme.spacing['spacing-30']};
     }
+
+    & .skeleton {
+      height: 2.4375rem;
+      width: 6.25rem;
+    }
   }
 `
 

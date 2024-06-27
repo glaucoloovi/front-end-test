@@ -12,6 +12,7 @@ export const theme = {
     'purple-2': '#4C309B',
     'green-1': '#38BFA0',
     'blue-1': '#008DCB',
+    skeleton: '#DAE0E360',
   },
   typography: {
     weight: {

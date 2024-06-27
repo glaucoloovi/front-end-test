@@ -1,19 +1,50 @@
+'use client'
+
+import { useAPIData } from '@/hooks/useAPIData'
+import { formatNumber } from '@/utils/formatNumber'
 import { HeaderCard } from '../HeaderCard'
+import { Skeleton } from '../Skeleton'
 import { ChevronDownIcon } from '../icons/ChevronDownIcon'
 import { LogoIcon } from '../icons/LogoIcon'
 import { MenuIcon } from '../icons/MenuIcon'
 import { StyledHeader, StyledHeaderButton } from './styles'
 
 export function Header() {
+  const { data, isLoading, error } = useAPIData()
+
+  const snapshotByPortfolio = data?.data?.snapshotByPortfolio
+
   return (
     <StyledHeader>
       <h1>
         <LogoIcon />
       </h1>
       <div className="card-group">
-        <HeaderCard type="equity" value="130.521.230,02" />
-        <HeaderCard type="valueApplied" value="521.230,02" />
-        <HeaderCard type="percentageProfit" value="2,34%" />
+        {isLoading || error ? (
+          <>
+            <Skeleton className="skeleton" />
+            <Skeleton className="skeleton" />
+            <Skeleton className="skeleton" />
+          </>
+        ) : (
+          <>
+            <HeaderCard
+              type="equity"
+              value={formatNumber(snapshotByPortfolio.equity, 'currency')}
+            />
+            <HeaderCard
+              type="valueApplied"
+              value={formatNumber(snapshotByPortfolio.valueApplied, 'currency')}
+            />
+            <HeaderCard
+              type="percentageProfit"
+              value={formatNumber(
+                snapshotByPortfolio.percentageProfit,
+                'percent'
+              )}
+            />
+          </>
+        )}
       </div>
       <div className="card-group">
         <StyledHeaderButton aria-labelledby="wallet">

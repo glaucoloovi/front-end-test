@@ -1,15 +1,61 @@
+'use client'
+
+import { useAPIData } from '@/hooks/useAPIData'
+import { formatNumber } from '@/utils/formatNumber'
 import { ResumeCard } from '../ResumeCard'
+import { Skeleton } from '../Skeleton'
 import { StyledResumeCardGroup } from './styles'
 
 export function ResumeCardGroup() {
+  const { data, isLoading, error } = useAPIData()
+
+  const snapshotByPortfolio = data?.data?.snapshotByPortfolio
+
   return (
     <StyledResumeCardGroup>
-      <ResumeCard label="SALDO BRUTO" value="R$ 207.653,10" />
-      <ResumeCard label="VALOR APLICADO" value="R$ 170.025,64" />
-      <ResumeCard label="RESULTADO" value="R$ 37.638,46" />
-      <ResumeCard label="RENTABILIDADE" value="25,08%" />
-      <ResumeCard label="CDI" value="23,68%" />
-      <ResumeCard label="% SOBRE CDI" value="320%" />
+      {isLoading || error ? (
+        <>
+          <Skeleton className="skeleton" />
+          <Skeleton className="skeleton" />
+          <Skeleton className="skeleton" />
+          <Skeleton className="skeleton" />
+          <Skeleton className="skeleton" />
+          <Skeleton className="skeleton" />
+        </>
+      ) : (
+        <>
+          <ResumeCard
+            label="SALDO BRUTO"
+            value={formatNumber(snapshotByPortfolio.equity, 'currency')}
+          />
+          <ResumeCard
+            label="VALOR APLICADO"
+            value={formatNumber(snapshotByPortfolio.valueApplied, 'currency')}
+          />
+          <ResumeCard
+            label="RESULTADO"
+            value={formatNumber(snapshotByPortfolio.equityProfit, 'currency')}
+          />
+          <ResumeCard
+            label="RENTABILIDADE"
+            value={formatNumber(
+              snapshotByPortfolio.percentageProfit,
+              'percent'
+            )}
+          />
+          <ResumeCard
+            label="CDI"
+            value={formatNumber(snapshotByPortfolio.indexerValue, 'percent')}
+          />
+          <ResumeCard
+            label="% SOBRE CDI"
+            value={formatNumber(
+              snapshotByPortfolio.percentageOverIndexer,
+              'percent'
+            )}
+          />
+        </>
+      )}
     </StyledResumeCardGroup>
   )
 }
