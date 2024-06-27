@@ -9,6 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/Pagination'
+import { PieChart } from '@/components/PieChart'
 import { ProfitabilityChart } from '@/components/ProfitabilityChart'
 import { ResumeCard } from '@/components/ResumeCard'
 import {
@@ -350,6 +351,10 @@ export default function Page() {
               </PaginationItem>
             </PaginationContent>
           </Pagination>
+        </div>
+        <div className="pie-chart-group">
+          <PieChart title="Divisão de Carteira por Tipos" />
+          <PieChart title="Divisão de Carteira por Título" />
         </div>
       </StyledMain>
     </Wrapper>

@@ -84,6 +84,10 @@ export const StyledMain = styled.main`
       }
     }
   }
+  & .pie-chart-group {
+    display: flex;
+    gap: ${({ theme }) => theme.spacing['spacing-10']};
+  }
 `
 
 export const StyledIncomeCardContent = styled.div<{
