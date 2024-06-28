@@ -7,12 +7,14 @@ import { StyledMain, Wrapper } from './styles'
 
 type PageProps = {
   searchParams?: {
-    page: string
+    page?: string
+    search?: string
   }
 }
 
 export default function Page({ searchParams }: PageProps) {
   const page = searchParams?.page || '1'
+  const search = searchParams?.search || ''
 
   return (
     <Wrapper>
@@ -21,7 +23,7 @@ export default function Page({ searchParams }: PageProps) {
         <h2 className="title">Renda fixa</h2>
         <ResumeCardGroup />
         <ProfitabilityChart />
-        <MyIncomesGroup currentPage={page} />
+        <MyIncomesGroup currentPage={page} search={search} />
         <PieChartGroup />
       </StyledMain>
     </Wrapper>

@@ -27,12 +27,12 @@ import { StyledIncomeCardContent, StyledMyIncomesGroup } from './styles'
 
 type MyIncomesGroupProps = {
   currentPage: string
+  search: string
 }
 
-export function MyIncomesGroup({ currentPage }: MyIncomesGroupProps) {
+export function MyIncomesGroup({ currentPage, search }: MyIncomesGroupProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const search = searchParams.get('search')
   const orderBy = searchParams.get('orderBy')
   const urlSearchParams = new URLSearchParams(searchParams)
 
