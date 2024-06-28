@@ -1,4 +1,4 @@
-export function formatNumber(value: number, style: string) {
+export function formatNumber(value: number, style?: string) {
   let options: Intl.NumberFormatOptions = {
     style: style,
   }
