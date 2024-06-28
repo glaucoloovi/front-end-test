@@ -1,3 +1,10 @@
+'use client'
+
+import { useAPIData } from '@/hooks/useAPIData'
+import { debounce } from '@/utils/debounce'
+import { formatNumber } from '@/utils/formatNumber'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useMemo } from 'react'
 import { IncomeCard } from '../IncomeCard'
 import { Input } from '../Input'
 import {
@@ -15,315 +22,244 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../Select'
+import { Skeleton } from '../Skeleton'
 import { StyledIncomeCardContent, StyledMyIncomesGroup } from './styles'
 
-export function MyIncomesGroup() {
+type MyIncomesGroupProps = {
+  currentPage: string
+}
+
+export function MyIncomesGroup({ currentPage }: MyIncomesGroupProps) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
+  const orderBy = searchParams.get('orderBy')
+  const urlSearchParams = new URLSearchParams(searchParams)
+
+  const { data, error, isLoading } = useAPIData()
+
+  const snapshotByProduct = data?.data?.snapshotByProduct
+
+  const sortedSnapshotByProduct = useMemo(() => {
+    if (!snapshotByProduct) return []
+    switch (orderBy) {
+      case 'name-asc':
+        return [...snapshotByProduct].sort((a, b) =>
+          a.fixedIncome.name.localeCompare(b.fixedIncome.name)
+        )
+      case 'name-desc':
+        return [...snapshotByProduct].sort((a, b) =>
+          b.fixedIncome.name.localeCompare(a.fixedIncome.name)
+        )
+      default:
+        return snapshotByProduct
+    }
+  }, [orderBy, snapshotByProduct])
+
   return (
     <StyledMyIncomesGroup>
       <div className="header">
         <h3 className="label">Minhas Rendas Fixas</h3>
         <div className="filters">
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Ordenar por" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">Option 1</SelectItem>
-              <SelectItem value="2">Option 2</SelectItem>
-              <SelectItem value="3">Option 3</SelectItem>
-            </SelectContent>
-          </Select>
-          <Input />
+          {isLoading || error ? (
+            <>
+              <Skeleton />
+              <Skeleton />
+            </>
+          ) : (
+            <>
+              <Select
+                defaultValue={orderBy}
+                onValueChange={(value) => {
+                  urlSearchParams.set('orderBy', value)
+                  router.replace(`/?${urlSearchParams.toString()}`, {
+                    scroll: false,
+                  })
+                }}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Ordenar por" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name-asc">Nome A - Z</SelectItem>
+                  <SelectItem value="name-desc">Nome Z - A</SelectItem>
+                </SelectContent>
+              </Select>
+              <Input
+                defaultValue={search}
+                onChange={debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+                  urlSearchParams.set('search', e.target.value)
+                  router.replace(`/?${urlSearchParams.toString()}`, {
+                    scroll: false,
+                  })
+                }, 500)}
+              />
+            </>
+          )}
         </div>
       </div>
       <section className="incomes">
-        <div className="incomes-group">
-          <IncomeCard label="TÍTULO">
-            <StyledIncomeCardContent $variant="default">
-              <p className="description">
-                Tesouro IPCA+ com Juros Semestrais 2024 &#40;NTNB&#41;
-              </p>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CLASSE</span>
-                <p className="content-wrapper-value">Tesouro Direto</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="MINHA POSIÇÃO">
-            <StyledIncomeCardContent $variant="primary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">VALOR INVES.</span>
-                <p className="content-wrapper-value">1.003,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SALDO BRUTO</span>
-                <p className="content-wrapper-value">1.124,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">RENT.</span>
-                <p className="content-wrapper-value">48,55%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">% DA CART.</span>
-                <p className="content-wrapper-value">5,33%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CDI</span>
-                <p className="content-wrapper-value">1,24</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SOBRE CDI</span>
-                <p className="content-wrapper-value">118</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="VENCIMENTO">
-            <StyledIncomeCardContent $variant="secondary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DATA VENC.</span>
-                <p className="content-wrapper-value">15.05.2024</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DIAS ATÉ VENC.</span>
-                <p className="content-wrapper-value">5762</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-        </div>
-        <div className="incomes-group">
-          <IncomeCard label="TÍTULO">
-            <StyledIncomeCardContent $variant="default">
-              <p className="description">
-                Tesouro IPCA+ com Juros Semestrais 2024 &#40;NTNB&#41;
-              </p>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CLASSE</span>
-                <p className="content-wrapper-value">Tesouro Direto</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="MINHA POSIÇÃO">
-            <StyledIncomeCardContent $variant="primary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">VALOR INVES.</span>
-                <p className="content-wrapper-value">1.003,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SALDO BRUTO</span>
-                <p className="content-wrapper-value">1.124,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">RENT.</span>
-                <p className="content-wrapper-value">48,55%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">% DA CART.</span>
-                <p className="content-wrapper-value">5,33%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CDI</span>
-                <p className="content-wrapper-value">1,24</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SOBRE CDI</span>
-                <p className="content-wrapper-value">118</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="VENCIMENTO">
-            <StyledIncomeCardContent $variant="secondary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DATA VENC.</span>
-                <p className="content-wrapper-value">15.05.2024</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DIAS ATÉ VENC.</span>
-                <p className="content-wrapper-value">5762</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-        </div>
-        <div className="incomes-group">
-          <span className="rescued-product">PRODUTO RESGATADO</span>
-          <IncomeCard label="TÍTULO">
-            <StyledIncomeCardContent $variant="default">
-              <p className="description">
-                Tesouro IPCA+ com Juros Semestrais 2024 &#40;NTNB&#41;
-              </p>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CLASSE</span>
-                <p className="content-wrapper-value">Tesouro Direto</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="MINHA POSIÇÃO">
-            <StyledIncomeCardContent $variant="primary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">VALOR INVES.</span>
-                <p className="content-wrapper-value">1.003,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SALDO BRUTO</span>
-                <p className="content-wrapper-value">1.124,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">RENT.</span>
-                <p className="content-wrapper-value">48,55%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">% DA CART.</span>
-                <p className="content-wrapper-value">5,33%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CDI</span>
-                <p className="content-wrapper-value">1,24</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SOBRE CDI</span>
-                <p className="content-wrapper-value">118</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="VENCIMENTO">
-            <StyledIncomeCardContent $variant="secondary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DATA VENC.</span>
-                <p className="content-wrapper-value">15.05.2024</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DIAS ATÉ VENC.</span>
-                <p className="content-wrapper-value">5762</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-        </div>
-        <div className="incomes-group">
-          <IncomeCard label="TÍTULO">
-            <StyledIncomeCardContent $variant="default">
-              <p className="description">
-                Tesouro IPCA+ com Juros Semestrais 2024 &#40;NTNB&#41;
-              </p>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CLASSE</span>
-                <p className="content-wrapper-value">Tesouro Direto</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="MINHA POSIÇÃO">
-            <StyledIncomeCardContent $variant="primary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">VALOR INVES.</span>
-                <p className="content-wrapper-value">1.003,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SALDO BRUTO</span>
-                <p className="content-wrapper-value">1.124,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">RENT.</span>
-                <p className="content-wrapper-value">48,55%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">% DA CART.</span>
-                <p className="content-wrapper-value">5,33%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CDI</span>
-                <p className="content-wrapper-value">1,24</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SOBRE CDI</span>
-                <p className="content-wrapper-value">118</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="VENCIMENTO">
-            <StyledIncomeCardContent $variant="secondary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DATA VENC.</span>
-                <p className="content-wrapper-value">15.05.2024</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DIAS ATÉ VENC.</span>
-                <p className="content-wrapper-value">5762</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-        </div>
-        <div className="incomes-group">
-          <IncomeCard label="TÍTULO">
-            <StyledIncomeCardContent $variant="default">
-              <p className="description">
-                Tesouro IPCA+ com Juros Semestrais 2024 &#40;NTNB&#41;
-              </p>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CLASSE</span>
-                <p className="content-wrapper-value">Tesouro Direto</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="MINHA POSIÇÃO">
-            <StyledIncomeCardContent $variant="primary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">VALOR INVES.</span>
-                <p className="content-wrapper-value">1.003,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SALDO BRUTO</span>
-                <p className="content-wrapper-value">1.124,00</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">RENT.</span>
-                <p className="content-wrapper-value">48,55%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">% DA CART.</span>
-                <p className="content-wrapper-value">5,33%</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">CDI</span>
-                <p className="content-wrapper-value">1,24</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">SOBRE CDI</span>
-                <p className="content-wrapper-value">118</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-          <IncomeCard label="VENCIMENTO">
-            <StyledIncomeCardContent $variant="secondary">
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DATA VENC.</span>
-                <p className="content-wrapper-value">15.05.2024</p>
-              </div>
-              <div className="content-wrapper">
-                <span className="content-wrapper-label">DIAS ATÉ VENC.</span>
-                <p className="content-wrapper-value">5762</p>
-              </div>
-            </StyledIncomeCardContent>
-          </IncomeCard>
-        </div>
+        {isLoading || error ? (
+          <>
+            <div className="incomes-group">
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+            </div>
+            <div className="incomes-group">
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+            </div>
+            <div className="incomes-group">
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+            </div>
+            <div className="incomes-group">
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+            </div>
+            <div className="incomes-group">
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+              <Skeleton className="skeleton" />
+            </div>
+          </>
+        ) : (
+          sortedSnapshotByProduct?.map(
+            (product) =>
+              product.fixedIncome.name
+                .toLocaleLowerCase()
+                .includes(search.toLocaleLowerCase()) && (
+                <div
+                  className="incomes-group"
+                  key={product.fixedIncome.portfolioProductId}
+                >
+                  <IncomeCard label="TÍTULO">
+                    <StyledIncomeCardContent $variant="default">
+                      <p className="description">{product.fixedIncome.name}</p>
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">CLASSE</span>
+                        <p className="content-wrapper-value">
+                          {product.fixedIncome.bondType}
+                        </p>
+                      </div>
+                    </StyledIncomeCardContent>
+                  </IncomeCard>
+                  <IncomeCard label="MINHA POSIÇÃO">
+                    <StyledIncomeCardContent $variant="primary">
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">
+                          VALOR INVES.
+                        </span>
+                        <p className="content-wrapper-value">
+                          {formatNumber(
+                            product.position.valueApplied,
+                            'currency'
+                          )}
+                        </p>
+                      </div>
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">
+                          SALDO BRUTO
+                        </span>
+                        <p className="content-wrapper-value">
+                          {formatNumber(product.position.equity, 'currency')}
+                        </p>
+                      </div>
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">RENT.</span>
+                        <p className="content-wrapper-value">
+                          {formatNumber(
+                            product.position.profitability,
+                            'percent'
+                          )}
+                        </p>
+                      </div>
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">
+                          % DA CART.
+                        </span>
+                        <p className="content-wrapper-value">
+                          {formatNumber(
+                            product.position.portfolioPercentage,
+                            'percent'
+                          )}
+                        </p>
+                      </div>
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">
+                          {product.position.indexerLabel}
+                        </span>
+                        <p className="content-wrapper-value">
+                          {formatNumber(product.position.indexerValue)}
+                        </p>
+                      </div>
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">SOBRE CDI</span>
+                        <p className="content-wrapper-value">
+                          {formatNumber(product.position.percentageOverIndexer)}
+                        </p>
+                      </div>
+                    </StyledIncomeCardContent>
+                  </IncomeCard>
+                  <IncomeCard label="VENCIMENTO">
+                    <StyledIncomeCardContent $variant="secondary">
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">
+                          DATA VENC.
+                        </span>
+                        <p className="content-wrapper-value">
+                          {product.due.date}
+                        </p>
+                      </div>
+                      <div className="content-wrapper">
+                        <span className="content-wrapper-label">
+                          DIAS ATÉ VENC.
+                        </span>
+                        <p className="content-wrapper-value">
+                          {product.due.daysUntilExpiration}
+                        </p>
+                      </div>
+                    </StyledIncomeCardContent>
+                  </IncomeCard>
+                </div>
+              )
+          )
+        )}
       </section>
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" scroll={false} />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="/?page=1" scroll={false}>
-              1
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="/?page=2" scroll={false} isActive>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" scroll={false} />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+      {!isLoading && !error && (
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="/?page=1" scroll={false} />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink
+                href="/?page=1"
+                scroll={false}
+                isActive={currentPage === '1'}
+              >
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink
+                href="/?page=2"
+                scroll={false}
+                isActive={currentPage === '2'}
+              >
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="/?page=2" scroll={false} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </StyledMyIncomesGroup>
   )
 }

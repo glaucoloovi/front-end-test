@@ -57,6 +57,10 @@ export const StyledMyIncomesGroup = styled.div`
         line-height: ${({ theme }) => theme.typography.xxs.lineHeight};
         color: ${({ theme }) => theme.colors['gray-2']};
       }
+
+      & .skeleton {
+        height: 5rem;
+      }
     }
   }
 `

@@ -5,7 +5,15 @@ import { ProfitabilityChart } from '@/components/ProfitabilityChart'
 import { ResumeCardGroup } from '@/components/ResumeCardGroup'
 import { StyledMain, Wrapper } from './styles'
 
-export default function Page() {
+type PageProps = {
+  searchParams?: {
+    page: string
+  }
+}
+
+export default function Page({ searchParams }: PageProps) {
+  const page = searchParams?.page || '1'
+
   return (
     <Wrapper>
       <Aside />
@@ -13,7 +21,7 @@ export default function Page() {
         <h2 className="title">Renda fixa</h2>
         <ResumeCardGroup />
         <ProfitabilityChart />
-        <MyIncomesGroup />
+        <MyIncomesGroup currentPage={page} />
         <PieChartGroup />
       </StyledMain>
     </Wrapper>
