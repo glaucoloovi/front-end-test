@@ -30,8 +30,10 @@ npm run dev
 
 ## 📝 Como rodar os testes
 
-Após já ter instalado as dependências é só rodar o seguinte comando:
+Execute este comando para instalar as dependências e rode os testes.
 
 ```bash
+npm init playwright@latest
+
 npx playwright test
 ```
