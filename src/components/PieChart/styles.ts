@@ -7,4 +7,9 @@ export const StyledPieChart = styled.div`
   border-radius: ${({ theme }) => theme.radius.lg};
   background-color: ${({ theme }) => theme.colors.white};
   width: 50%;
+  height: 27rem;
+
+  & .skeleton {
+    height: 100%;
+  }
 `
