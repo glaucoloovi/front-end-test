@@ -10,7 +10,6 @@ import {
   FixedResults,
   MaturityInvestment,
   PaginationContainer,
-  PageButton,
   Select,
   Input,
   SearchIcon,
@@ -21,6 +20,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 import { useState } from "react";
 import { SnapshotByProduct } from "src/types/index";
 import useFilterAndSort from "src/hooks/useFilterAndSort";
+import Button from "@components/ButtonComponent/ButtonComponent";
 
 interface FixedIncomeDetailsProps {
   Investment: SnapshotByProduct[];
@@ -41,13 +41,13 @@ const FixedIncomeDetails: React.FC<FixedIncomeDetailsProps> = ({
   );
 
   const paginationButtons = Array.from({ length: totalPages }, (_, index) => (
-    <PageButton
+    <Button
       key={index + 1}
       onClick={() => setCurrentPage(index + 1)}
       disabled={currentPage === index + 1}
     >
       {index + 1}
-    </PageButton>
+    </Button>
   ));
   return (
     <Container>

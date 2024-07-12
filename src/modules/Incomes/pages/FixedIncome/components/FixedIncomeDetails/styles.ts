@@ -2,11 +2,6 @@ import { pxToRem } from "@utils/styles";
 import { FaSearch } from "react-icons/fa";
 import styled from "styled-components";
 
-interface PageButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  active?: boolean;
-}
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -136,23 +131,4 @@ export const PaginationContainer = styled.div`
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
-`;
-
-export const PageButton = styled.button<PageButtonProps>`
-  border: 1px solid #ccc;
-  background-color: ${({ active }) => (active ? "#ddd" : "transparent")};
-  color: #666;
-  text-align: center;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-
-  &:disabled {
-    color: #999;
-    cursor: not-allowed;
-  }
-
-  &:hover:not(:disabled) {
-    background-color: #eee;
-  }
 `;
