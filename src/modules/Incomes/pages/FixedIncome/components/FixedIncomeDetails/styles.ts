@@ -95,7 +95,7 @@ export const Row = styled.div`
   width: 100%;
   flex-direction: column;
   border-radius: 8px;
-  padding: 16px;
+  padding: 8px;
   gap: 16px;
 `;
 
