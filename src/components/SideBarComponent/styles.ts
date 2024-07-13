@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const SidebarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+`;
+
+export const LinkItem = styled.div`
+  height: 100%;
+  color: ${({ theme }) => theme.colors.gray200};
+  font-size: ${({ theme }) => theme.fonts.styles[14]};
+`;
+
 export const Dot = styled.span`
   height: 8px;
   width: 8px;
@@ -15,7 +27,7 @@ export const Container = styled.div`
 
 export const SubContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.colors.Neutrals0};
@@ -39,7 +51,7 @@ export const UserImage = styled.img`
 
 export const UserName = styled.div`
   color: ${({ theme }) => theme.colors.gray};
-  font-size: 16px;
-  font-weight: bold;
+  font-size: ${({ theme }) => theme.fonts.styles[16]};
+  font-weight: ${({ theme }) => theme.fonts.weight.bold};
   margin-top: 8px;
 `;

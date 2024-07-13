@@ -1,5 +1,4 @@
 import React from "react";
-import { Menu } from "antd";
 import {
   FaBox,
   FaMoneyBillWave,
@@ -13,6 +12,8 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import {
   Container,
   Dot,
+  LinkItem,
+  SidebarContainer,
   SubContainer,
   UserImage,
   UserName,
@@ -30,16 +31,6 @@ const iconStyle: React.CSSProperties = {
   borderRadius: "50%",
   padding: "4px",
   color: "white",
-};
-
-const itemBackgroundStyle: React.CSSProperties = {
-  background: "white",
-  height: "100%",
-};
-
-const sidebarStyle: React.CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
 };
 
 const links = [
@@ -72,7 +63,7 @@ const IconWithProps = ({
 };
 
 const Sidebar: React.FC = () => (
-  <Menu mode="inline" style={{ width: 300, ...sidebarStyle }}>
+  <SidebarContainer>
     <UserProfile>
       <UserImage src={user} alt="User profile" />
       <UserName>Gabriel Lucas (Pro)</UserName>
@@ -82,12 +73,12 @@ const Sidebar: React.FC = () => (
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: "space-between",
             alignItems: "center",
             padding: "8px",
           }}
         >
-          <Menu.Item key={index} style={itemBackgroundStyle}>
+          <LinkItem key={index}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <IconWithProps
                 icon={link.icon}
@@ -96,24 +87,21 @@ const Sidebar: React.FC = () => (
               />
               {link.label}
             </div>
-          </Menu.Item>
+          </LinkItem>
           <RiArrowDropRightLine size={30} color="#646464" />
         </div>
         {link.sublinks.map((sublink, subIndex) => (
           <SubContainer key={`${index}-${subIndex}`}>
-            <Menu.Item
-              key={`${index}-${subIndex}`}
-              style={{ ...itemBackgroundStyle, paddingLeft: "20px" }}
-            >
+            <LinkItem key={`${index}-${subIndex}`}>
               <Dot />
               {sublink}
-            </Menu.Item>
+            </LinkItem>
             <RiArrowDropRightLine size={30} color="#646464" />
           </SubContainer>
         ))}
       </Container>
     ))}
-  </Menu>
+  </SidebarContainer>
 );
 
 export default Sidebar;
