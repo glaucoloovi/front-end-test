@@ -3,7 +3,7 @@
 ## Tecnologias Utilizadas
 
 - TypeScript
-- Styled
+- Styled-components
 - React
 - Jest
 
