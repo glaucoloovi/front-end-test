@@ -5,11 +5,13 @@ import { IncomeProvider } from "src/modules/Incomes/context/IncomeContext";
 const RouterConfig = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          {/* <Route index element={<FixedIncomes />} /> */}
-        </Route>
-      </Routes>
+      <IncomeProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            {/* <Route index element={<FixedIncomes />} /> */}
+          </Route>
+        </Routes>
+      </IncomeProvider>
     </Router>
   );
 };
