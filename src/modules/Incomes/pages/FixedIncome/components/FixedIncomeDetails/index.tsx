@@ -17,7 +17,7 @@ import {
 } from "./styles";
 import { formatNumberToCurrency } from "@utils/numberUtils";
 import { FaExclamationCircle } from "react-icons/fa";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SnapshotByProduct } from "src/types/index";
 import useFilterAndSort from "src/hooks/useFilterAndSort";
 import Button from "@components/ButtonComponent/ButtonComponent";
@@ -33,11 +33,18 @@ const FixedIncomeDetails: React.FC<FixedIncomeDetailsProps> = ({
   const { filteredAndSortedItems, setFilter, setSortBy } =
     useFilterAndSort(Investment);
   const itemsPerPage = 5;
-  const totalPages = Math.ceil(filteredAndSortedItems.length / itemsPerPage);
+  const totalPages = useMemo(
+    () => Math.ceil(filteredAndSortedItems.length / itemsPerPage),
+    [filteredAndSortedItems]
+  );
 
-  const currentItems = filteredAndSortedItems.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+  const currentItems = useMemo(
+    () =>
+      filteredAndSortedItems.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      ),
+    [filteredAndSortedItems, currentPage, itemsPerPage]
   );
 
   const paginationButtons = Array.from({ length: totalPages }, (_, index) => (
