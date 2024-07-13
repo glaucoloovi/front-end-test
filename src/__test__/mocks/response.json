@@ -1,0 +1,59 @@
+{
+  "data": {
+    "dailyEquityByPortfolioChartData": [],
+    "snapshotByPortfolio": {
+      "equity": 207653.1,
+      "valueApplied": 170025.64,
+      "equityProfit": 37638.46,
+      "percentageProfit": 25.08,
+      "indexerValue": 23.68,
+      "percentageOverIndexer": 321
+    },
+    "snapshotByProduct": [
+      {
+        "due": {
+          "date": "14/08/2024",
+          "daysUntilExpiration": 1276
+        },
+        "fixedIncome": {
+          "bondType": "Tesouro Direto",
+          "name": "Tesouro IPCA+ com Juros Semestrais 2024 (NTNB)"
+        },
+        "portfolioProductId": 2068820,
+        "hasBalance": 1,
+        "position": {
+          "equity": 63894.24,
+          "indexerLabel": "CDI",
+          "indexerValue": 14.06,
+          "percentageOverIndexer": 141.05,
+          "portfolioPercentage": 12.05,
+          "profitability": 19.83,
+          "valueApplied": 69970.57
+        },
+        "productHasQuotation": 1
+      },
+      {
+        "due": {
+          "date": "14/08/2026",
+          "daysUntilExpiration": 1300
+        },
+        "fixedIncome": {
+          "bondType": "Tesouro Direto",
+          "name": "Tesouro IPCA+ com Juros Semestrais 2023 (NTNB)"
+        },
+        "portfolioProductId": 2068820,
+        "hasBalance": 1,
+        "position": {
+          "equity": 63894.24,
+          "indexerLabel": "CDI",
+          "indexerValue": 14.06,
+          "percentageOverIndexer": 141.05,
+          "portfolioPercentage": 10.05,
+          "profitability": 19.83,
+          "valueApplied": 79920.57
+        },
+        "productHasQuotation": 1
+      }
+    ]
+  }
+}
