@@ -100,7 +100,7 @@ const FixedIncomeDetails: React.FC<FixedIncomeDetailsProps> = ({
                 {item.position.profitability.toFixed(2)}%
               </Label>
               <Label color="#50c68ff3">
-                <Title>% da Cart.</Title>
+                <Title>% Cart</Title>
                 {item.position.portfolioPercentage.toFixed(2)}%
               </Label>
               <Label color="#50c68ff3">

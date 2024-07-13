@@ -108,6 +108,7 @@ export const FixedInfos = styled.div`
 
 export const FixedResults = styled.div`
   display: flex;
+  align-items: center;
   gap: 24px;
 `;
 
