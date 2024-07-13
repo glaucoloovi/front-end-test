@@ -6,6 +6,7 @@ export interface ColorsInterface {
   Red: string;
   gray: string;
   gray200: string;
+  gray500: string;
   Purple: string;
   White: string;
   Black2: string;
@@ -19,6 +20,7 @@ const colors: ColorsInterface = {
   Black: "#1a1a1a",
   gray: "#a9a9a9",
   gray200: "#646464",
+  gray500: "#ced1d7",
   Transparent: "transparent",
   Purple: "#6001d2",
   Red: "red",
