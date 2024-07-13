@@ -54,7 +54,7 @@ export const Title = styled.p`
 `;
 
 export const IconWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.Neutrals0};
+  background-color: ${({ theme }) => theme.colors.gray500};
   border-radius: 50%;
   padding: 8px;
   display: flex;

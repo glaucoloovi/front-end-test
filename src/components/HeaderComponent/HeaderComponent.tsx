@@ -32,7 +32,7 @@ const HeaderComponent: React.FC = () => {
       <NavWrapper>
         <NavItem>
           <IconWrapper>
-            <FaBalanceScale size={30} color="gray" />
+            <FaBalanceScale size={30} color="white" />
           </IconWrapper>
           <Content>
             <Title>SALDO BRUTO</Title>
