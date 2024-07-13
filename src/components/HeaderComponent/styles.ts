@@ -15,20 +15,17 @@ export const Container = styled.header`
 `;
 
 export const Logo = styled.h1`
-  background-color: ${({ theme }) => theme.colors.White};
   font-size: 30px;
   font-weight: 800;
   color: ${({ theme }) => theme.colors.Purple};
 
   span {
-    background-color: ${({ theme }) => theme.colors.White};
     font-weight: 300;
     color: ${({ theme }) => theme.colors.gray};
   }
 `;
 
 export const NavWrapper = styled.nav`
-  background-color: ${({ theme }) => theme.colors.White};
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -39,20 +36,17 @@ export const NavWrapper = styled.nav`
 `;
 
 export const NavItem = styled.div`
-  background-color: ${({ theme }) => theme.colors.White};
   display: flex;
   align-items: center;
   gap: 8px;
 `;
 export const Content = styled.div`
-  background-color: ${({ theme }) => theme.colors.White};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 `;
 
 export const Title = styled.p`
-  background-color: ${({ theme }) => theme.colors.White};
   text-decoration: none;
   font-size: ${pxToRem(10)};
   font-weight: bold;
@@ -69,7 +63,6 @@ export const IconWrapper = styled.div`
 `;
 
 export const Value = styled.h2`
-  background-color: ${({ theme }) => theme.colors.White};
   font-size: ${pxToRem(18)};
   font-weight: bold;
   color: ${({ theme }) => theme.colors.gray200};
