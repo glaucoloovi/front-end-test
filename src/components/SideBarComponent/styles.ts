@@ -4,6 +4,7 @@ export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+  border-right: 2px solid ${({ theme }) => theme.colors.Neutrals0};
 `;
 
 export const LinkItem = styled.div`
