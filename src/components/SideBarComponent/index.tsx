@@ -21,16 +21,15 @@ import {
 } from "./styles";
 import user from "src/assets/gabriel.jpg";
 
-interface Link {
-  icon: IconType;
-  label: string;
-  sublinks: string[];
-}
 const iconStyle: React.CSSProperties = {
   background: "#ced1d7",
   borderRadius: "50%",
   padding: "4px",
   color: "white",
+};
+
+const specialIconStyle: React.CSSProperties = {
+  background: "#6001d2",
 };
 
 const links = [
@@ -49,16 +48,26 @@ const links = [
 
 const IconWithProps = ({
   icon,
+  label,
   size = 24,
   ...props
 }: {
   icon: IconType;
+  label: string;
   style?: React.CSSProperties;
   size?: number;
 }) => {
   const Icon = icon;
+  const isSpecialLink = label === "Classe de Ativos";
   return (
-    <Icon {...props} size={size} style={{ ...iconStyle, ...props.style }} />
+    <Icon
+      size={size}
+      style={{
+        ...iconStyle,
+        ...(isSpecialLink ? specialIconStyle : {}),
+        ...props.style,
+      }}
+    />
   );
 };
 
@@ -68,7 +77,7 @@ const Sidebar: React.FC = () => (
       <UserImage src={user} alt="User profile" />
       <UserName>Gabriel Lucas (Pro)</UserName>
     </UserProfile>
-    {links.map((link: Link, index) => (
+    {links.map((link, index) => (
       <Container key={index}>
         <div
           style={{
@@ -82,6 +91,7 @@ const Sidebar: React.FC = () => (
             <div style={{ display: "flex", alignItems: "center" }}>
               <IconWithProps
                 icon={link.icon}
+                label={link.label}
                 size={30}
                 style={{ marginRight: 8 }}
               />
