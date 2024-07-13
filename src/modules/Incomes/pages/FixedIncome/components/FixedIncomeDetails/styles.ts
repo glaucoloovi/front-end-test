@@ -1,4 +1,4 @@
-import { pxToRem } from "@utils/styles";
+import { devices, pxToRem } from "@utils/styles";
 import { FaSearch } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -83,7 +83,8 @@ export const Card = styled.div`
   padding: 8px;
 
   justify-content: space-evenly;
-  @media (max-width: 768px) {
+
+  @media screen and (${devices.laptopL}) {
     flex-direction: column;
     min-height: 300px;
   }
