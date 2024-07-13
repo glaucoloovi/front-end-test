@@ -2,6 +2,8 @@ import { useContext, useMemo } from "react";
 
 import { Container, Ativo } from "./styles";
 import { IncomeContext } from "../../context/IncomeContext";
+import CardsDisplay from "./components/CardsDisplay";
+import FixedIncomeDetails from "./components/FixedIncomeDetails";
 
 const FixedIncomes: React.FC = () => {
   const { products } = useContext(IncomeContext);
@@ -31,6 +33,12 @@ const FixedIncomes: React.FC = () => {
   return (
     <Container>
       <Ativo>Renda Fixa</Ativo>
+      <CardsDisplay
+        totals={totals}
+        result={result}
+        productsCount={products.length}
+      />
+      <FixedIncomeDetails Investment={products} />
     </Container>
   );
 };
